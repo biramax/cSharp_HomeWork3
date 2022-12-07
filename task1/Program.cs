@@ -36,7 +36,7 @@ int GetNumberFromInput()
             Console.WriteLine(input.Trim() == "" ? "Вы ничего не ввели" : "Вы ввели некорректные данные");
     }
     
-    return number;
+    return Math.Abs(number);
 }
 
 
@@ -68,25 +68,19 @@ bool CheckIfPolindrom_anyNumber(int number)
         length ++;
     }
 
-    // Проверяем на симметричность
-    int leftNumber  = 0;
-    int rightNumber = 0;
+    // Проверяем равенство 1-го и последнего числа
+    int leftNumber  = number / Convert.ToInt32(Math.Pow(10, length - 1));
+    int rightNumber = number % 10;
 
-    for (int i = 0; i < length / 2; i ++)
+    if (leftNumber != rightNumber)
+        return false;
+
+    // Проверяем на равенство других пар чисел
+    for (int i = 1; i < length / 2; i ++)
     {
-        // Проверяем равенство 1-го и последнего числа
-        if (i == 0)
-        {
-            leftNumber  = number / Convert.ToInt32(Math.Pow(10, length - 1));
-            rightNumber = number % 10;
-        }
-        // Проверяем на равенство других пар чисел
-        else 
-        {
-            leftNumber  = number / Convert.ToInt32(Math.Pow(10, length - 1 - i)) % 10;
-            rightNumber = number / Convert.ToInt32(Math.Pow(10, i)) % 10;
-        }
-        
+        leftNumber  = number / Convert.ToInt32(Math.Pow(10, length - 1 - i)) % 10;
+        rightNumber = number / Convert.ToInt32(Math.Pow(10, i)) % 10;
+                
         if (leftNumber != rightNumber)
             return false;
     }
