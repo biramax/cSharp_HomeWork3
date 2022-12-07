@@ -69,19 +69,19 @@ bool CheckIfPolindrom_anyNumber(int number)
     }
 
     // Проверяем равенство 1-го и последнего числа
-    int leftNumber  = number / Convert.ToInt32(Math.Pow(10, length - 1));
-    int rightNumber = number % 10;
+    int leftDigit  = number / Convert.ToInt32(Math.Pow(10, length - 1));
+    int rightDigit = number % 10;
 
-    if (leftNumber != rightNumber)
+    if (leftDigit != rightDigit)
         return false;
 
     // Проверяем на равенство других пар чисел
     for (int i = 1; i < length / 2; i ++)
     {
-        leftNumber  = number / Convert.ToInt32(Math.Pow(10, length - 1 - i)) % 10;
-        rightNumber = number / Convert.ToInt32(Math.Pow(10, i)) % 10;
+        leftDigit  = number / Convert.ToInt32(Math.Pow(10, length - 1 - i)) % 10;
+        rightDigit = number / Convert.ToInt32(Math.Pow(10, i)) % 10;
                 
-        if (leftNumber != rightNumber)
+        if (leftDigit != rightDigit)
             return false;
     }
     
